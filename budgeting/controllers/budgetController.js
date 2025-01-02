@@ -4,11 +4,12 @@ const { validateBudgetFields } = require('../utils/validation');
 // Set or update budget
 exports.setBudget = async (req, res) => {
   try {
-    console.log("budget controller");
+   
     const { user_id, daily_budget, weekly_budget, monthly_budget } = req.body;
 
     // Validate the budget data
-    const validation = validateBudgetFields(req.body);
+const validation = validateBudgetFields(user_id, daily_budget, weekly_budget, monthly_budget);
+
     if (!validation.isValid) {
       return res.status(400).json({ message: validation.message });
     }
@@ -21,7 +22,7 @@ exports.setBudget = async (req, res) => {
 
     res.status(200).json(budget);
   } catch (error) {
-    console.log("entered here");
+    console.log("Error:", error.message);
     res.status(500).json({ message: error.message });
   }
 };

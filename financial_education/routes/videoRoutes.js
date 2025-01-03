@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { addVideoProgress, getVideoProgress } = require('../controllers/videoController');
 
-// Add video progress
+// Route to add video progress
 router.post('/progress', addVideoProgress);
 
-// Get video progress for a specific user
-router.get('/progress/:userId', getVideoProgress);
+// Route to fetch all video progress
+router.get('/progress', getVideoProgress);
 
 module.exports = router;

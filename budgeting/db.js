@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
-require('dotenv').config(); // Make sure to load environment variables
+require('dotenv').config();
 
 const connectBudgetingDB = () => {
-  const uri = process.env.DB_URI; // Use the environment variable
+  const uri = process.env.DB_URI;
 
   if (!uri) {
     console.error("Error: DB_URI is not defined in the .env file");
     return;
   }
 
-  // Remove the deprecated options
   mongoose.connect(uri)
     .then(() => {
       console.log("Successfully connected to the Budgeting Database");
@@ -20,3 +19,4 @@ const connectBudgetingDB = () => {
 };
 
 module.exports = connectBudgetingDB;
+

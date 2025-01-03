@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const videoProgressSchema = new mongoose.Schema({
   userId: { type: String, required: true },
-  videoLink: { type: String, required: true },
-  completionStatus: { type: String, enum: ['watched', 'not watched', 'in-progress'], required: true },
-  timeSpent: { type: Number, required: true }, // Time spent in seconds
-  lastWatched: { type: Date, default: Date.now }
-});
+  videoId: { type: String, required: true },
+  watchedDuration: { type: Number, required: true },
+  totalDuration: { type: Number, required: true },
+  completed: { type: Boolean, required: true },
+}, { timestamps: true });
 
-module.exports = mongoose.model("VideoProgress", videoProgressSchema);
+module.exports = mongoose.model('VideoProgress', videoProgressSchema);

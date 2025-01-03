@@ -1,7 +1,6 @@
 const Expense = require("../models/expense");
-const { validateExpenseFields } = require("../utils/validation");  // Import validation function
+const { validateExpenseFields } = require("../utils/validation");
 
-// Add a new expense
 // Add a new expense
 exports.addExpense = async (req, res) => {
   try {
@@ -9,7 +8,6 @@ exports.addExpense = async (req, res) => {
 
     // Validate the expense data
     const validation = validateExpenseFields(user_id, amount, reason, expense_date);
-    console.log("Validation result:", validation); // Log validation result
     if (!validation.isValid) {
       return res.status(400).json({ message: validation.message });
     }
@@ -28,7 +26,6 @@ exports.addExpense = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 // Get all expenses for a user
 exports.getExpenses = async (req, res) => {

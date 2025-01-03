@@ -1,20 +1,19 @@
-const express = require("express");
+// routes/quizRoutes.js
+const express = require('express');
 const router = express.Router();
-const { addQuizProgress, getQuizResults } = require("../controllers/quizController");
+const { getAllQuizProgress, addQuizProgress, getQuizResults, deleteQuizProgress } = require('../controllers/quizController');
 
-// Define the route
-router.get('/progress', async (req, res) => {
-    try {
-        const progress = await QuizProgress.find(); // Assuming QuizProgress is your model
-        res.json(progress);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
+// GET: Get all quiz progress
+router.get('/progress', getAllQuizProgress);
 
+// POST: Add quiz progress
+router.post('/progress', addQuizProgress);
 
-router.post("/progress", addQuizProgress);
-router.get("/results/:userId", getQuizResults);
+// GET: Get quiz results by userId
+router.get('/results/:userId', getQuizResults);
+
+// DELETE: Delete quiz progress by userId and questionId
+router.delete('/progress', deleteQuizProgress);
 
 module.exports = router;
 

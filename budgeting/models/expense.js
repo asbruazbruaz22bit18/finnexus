@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 
 const expenseSchema = new mongoose.Schema({
   user_id: { type: String, required: true },
-  amount: { 
-    type: Number, 
-    required: true, 
-    min: 0,  // Prevent negative expense amounts
-  },
+  amount: { type: Number, required: true, min: 0 },
   reason: { type: String, required: true },
   description: { type: String },
   expense_date: { 
@@ -14,7 +10,7 @@ const expenseSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function(value) {
-        return value <= Date.now();  // Ensure the expense date is not in the future
+        return value <= Date.now();
       },
       message: 'Expense date cannot be in the future',
     },
